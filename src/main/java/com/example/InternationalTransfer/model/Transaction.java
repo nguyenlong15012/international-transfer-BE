@@ -17,7 +17,7 @@ public class Transaction {
     @Column(name = "creator")
     private String creator;
 
-    @Column(name = "cif", length = 255)
+    @Column(name = "cif", nullable = false)
     private String cif;
 
     @Column(name = "bytes", columnDefinition = "text")

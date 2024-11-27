@@ -1,5 +1,6 @@
 package com.example.InternationalTransfer.service;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,4 +35,13 @@ public class TransactionService {
 	public List<TransactionEmail> getTransByUser() {
 		return tRepository.findTransByUser();
 	}
+	
+	public List<Transaction> getTransactionsByCode(String transCode) {
+        return tRepository.findTransByTransCode(transCode);
+    }
+	
+	public int UpdateTransaction (String cif, Date createDate, Double amount) {
+		return tRepository.UpdateCifAndCreateDateByAmount(cif, createDate, amount);
+	}
+	
 }
