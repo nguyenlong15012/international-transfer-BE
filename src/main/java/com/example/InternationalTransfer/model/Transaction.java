@@ -11,8 +11,11 @@ public class Transaction {
     @Column(name = "transactionCode", unique = true, length = 50) // Tên cột khớp với database
     private String transactionCode;
 
-    @Column(name = "createdDate", columnDefinition = "date")
-    private Date createdDate;
+    @Column(name = "create_date", columnDefinition = "date")
+    private Date createDate;
+    
+    @Column(name = "creator")
+    private String creator;
 
     @Column(name = "cif", length = 255)
     private String cif;
@@ -38,12 +41,23 @@ public class Transaction {
     @Column(name = "debt_date", columnDefinition = "date")
     private Date debtDate;
 
-	@Override
+    @Override
 	public String toString() {
-		return "Transaction [transactionCode=" + transactionCode + ", createdDate=" + createdDate + ", cif=" + cif
-				+ ", bytes=" + bytes + ", processId=" + processId + ", amount=" + amount + ", currency=" + currency
-				+ ", accStatus=" + accStatus + ", debtStatus=" + debtStatus + ", debtDate=" + debtDate + "]";
+		return "Transaction [transactionCode=" + transactionCode + ", createDate=" + createDate + ", creator=" + creator
+				+ ", cif=" + cif + ", bytes=" + bytes + ", processId=" + processId + ", amount=" + amount
+				+ ", currency=" + currency + ", accStatus=" + accStatus + ", debtStatus=" + debtStatus + ", debtDate="
+				+ debtDate + "]";
 	}
+
+	public String getCreator() {
+		return creator;
+	}
+
+	public void setCreator(String creator) {
+		this.creator = creator;
+	}
+
+
 
 	public String getTransactionCode() {
 		return transactionCode;
@@ -52,13 +66,15 @@ public class Transaction {
 	public void setTransactionCode(String transactionCode) {
 		this.transactionCode = transactionCode;
 	}
-
-	public Date getCreatedDate() {
-		return createdDate;
+	
+	
+	
+	public Date getCreateDate() {
+		return createDate;
 	}
 
-	public void setCreatedDate(Date createdDate) {
-		this.createdDate = createdDate;
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
 	}
 
 	public String getCif() {

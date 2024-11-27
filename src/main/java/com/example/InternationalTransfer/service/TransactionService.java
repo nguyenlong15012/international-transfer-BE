@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.InternationalTransfer.dto.TransactionEmail;
 import com.example.InternationalTransfer.model.Transaction;
 import com.example.InternationalTransfer.repository.TransactionRepository;
 
@@ -28,5 +29,9 @@ public class TransactionService {
 	
 	public void deleteTrans (Long id) {
 		tRepository.deleteById(id);
+	}
+	
+	public List<TransactionEmail> getTransByUser() {
+		return tRepository.findTransByUser();
 	}
 }

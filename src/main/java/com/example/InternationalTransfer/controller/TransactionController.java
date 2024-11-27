@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import com.example.InternationalTransfer.dto.TransactionEmail;
 import com.example.InternationalTransfer.model.Transaction;
 import com.example.InternationalTransfer.service.TransactionService;
 
@@ -33,5 +34,10 @@ public class TransactionController {
 	@DeleteMapping("/{id}")
 	public void deleteTrans(@PathVariable Long id) {
 		tService.deleteTrans(id);
+	}
+	
+	@GetMapping("/trans-user")
+	public List<TransactionEmail> getTransCode(){
+		return tService.getTransByUser();
 	}
 }
