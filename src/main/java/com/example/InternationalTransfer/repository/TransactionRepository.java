@@ -27,10 +27,17 @@ public interface TransactionRepository extends JpaRepository<Transaction, Long>{
 	@Query(value = "select * from longnb.transaction where transaction_code like concat('%',:transCode,'%')", nativeQuery = true)
 	List<Transaction> findTransByTransCode(@Param("transCode") String transCode);
 	
-	@Modifying
+	@Modifying  //Dùng khi thay đổi DB ví dự như lệnh insert update, delete
 	@Transactional
 	@Query(value = "Update longnb.transaction set cif = :cif, create_date = :createDate where amount = :amount ", nativeQuery = true)
 	int UpdateCifAndCreateDateByAmount(String cif, Date createDate, Double amount);
+	
+	@Query(value = "SELECT transaction_code as transactionCode, render, receiver, cif, fromDate, toDate" +
+			"FROM bpm.customers" +
+			"WHERE ( cif_num ILIKE concat('%',$1::text,'%') or $1::text ='')" + 
+			"AND (cust_name ILIKE concat('%',$2::text,'%') or $2::text = '')" + 
+			"AND (cust_pp ILIKE concat('%',$3::text,'%') or $3::text='')", nativeQuery = true)
+	List<Transaction> SearchTransaction(Transaction transaction);
 }
 
 //@Query(value = "select * from post where status = 1 and title like CONCAT('%',:title,'%');", nativeQuery = true)

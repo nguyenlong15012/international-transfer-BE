@@ -8,8 +8,11 @@ import jakarta.persistence.*;
 public class Transaction {
 
     @Id
-    @Column(name = "transactionCode", unique = true, length = 50) // Tên cột khớp với database
+    @Column(name = "transactionCode", unique = true) // Tên cột khớp với database
     private String transactionCode;
+    
+    @Column(name = "xml", columnDefinition = "Text") 
+    private String xml;
 
     @Column(name = "create_date", columnDefinition = "date")
     private Date createDate;
@@ -41,12 +44,14 @@ public class Transaction {
     @Column(name = "debt_date", columnDefinition = "date")
     private Date debtDate;
 
-    @Override
+
+
+	@Override
 	public String toString() {
-		return "Transaction [transactionCode=" + transactionCode + ", createDate=" + createDate + ", creator=" + creator
-				+ ", cif=" + cif + ", bytes=" + bytes + ", processId=" + processId + ", amount=" + amount
-				+ ", currency=" + currency + ", accStatus=" + accStatus + ", debtStatus=" + debtStatus + ", debtDate="
-				+ debtDate + "]";
+		return "Transaction [transactionCode=" + transactionCode + ", xml=" + xml + ", createDate=" + createDate
+				+ ", creator=" + creator + ", cif=" + cif + ", bytes=" + bytes + ", processId=" + processId
+				+ ", amount=" + amount + ", currency=" + currency + ", accStatus=" + accStatus + ", debtStatus="
+				+ debtStatus + ", debtDate=" + debtDate + "]";
 	}
 
 	public String getCreator() {
@@ -57,7 +62,13 @@ public class Transaction {
 		this.creator = creator;
 	}
 
+	public String getXml() {
+		return xml;
+	}
 
+	public void setXml(String xml) {
+		this.xml = xml;
+	}
 
 	public String getTransactionCode() {
 		return transactionCode;

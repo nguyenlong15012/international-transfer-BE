@@ -8,6 +8,7 @@ public class InternationalTransferApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(InternationalTransferApplication.class, args);
+		
 	}
 
 }

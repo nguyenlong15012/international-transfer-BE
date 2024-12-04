@@ -15,6 +15,7 @@ import com.example.InternationalTransfer.service.TransactionService;
 import org.springframework.http.ResponseEntity;
 
 @RestController
+@CrossOrigin("*")
 @RequestMapping("/api/trans")
 public class TransactionController {
 	
@@ -56,7 +57,6 @@ public class TransactionController {
 	        }
 	        
 	        return new ResponseEntity<>(transactions, HttpStatus.OK);
-	    
 	}
 	
 	@PostMapping("/update")
@@ -80,9 +80,6 @@ public class TransactionController {
 	            return ResponseEntity.badRequest().body("Invalid date format. Expected yyyy-MM-dd.");
 	        }
 	    }
-		System.out.println("Received cif: " + cif);
-	    System.out.println("Received createdDate: " + createDate);
-	    System.out.println("Received amount: " + amount);
 	    
 		int updateRow = tService.UpdateTransaction(cif, createDate, amount);
 		if(updateRow > 0) {
